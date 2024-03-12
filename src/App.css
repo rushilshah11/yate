@@ -1,38 +1,39 @@
+/* App.css */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black; /* Set the background color of the body to black */
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background: #000; /* Set the background color of the .App container to black */
+  position: relative;
+  overflow: hidden;
+  width: 100%; /* For smaller screens, occupying full width */
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* For small devices like iPhone SE */
+@media (max-width: 320px) {
+  .App {
+    width: 10%; /* Set the .App container width to 90% of the viewport width for small devices */
   }
-  to {
-    transform: rotate(360deg);
+}
+
+/* For medium devices like iPad */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .App {
+    width: 80%; /* Set the .App container width to 80% of the viewport width for iPad */
+    margin: 0 auto; /* Center the .App container horizontally */
+  }
+}
+
+/* For large devices like PCs */
+@media (min-width: 1025px) {
+  .App {
+    width: 50%; /* Set the .App container width to 50% of the viewport width for large devices */
+    margin: 0 auto; /* Center the .App container horizontally */
   }
 }
