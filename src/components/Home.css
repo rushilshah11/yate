@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black; /* Set the background color of the body to black */
+}
+
+.Home {
+  margin: 0;
+  padding: 0;
+  background-color: black; /* Set the background color of the body to black */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #000; /* Set the background color of the .App container to black */
+  position: relative;
+  overflow: hidden;
+  width: 100%; /* For smaller screens, occupying full width */
+}
+
+/* For small devices like iPhone SE */
+@media (max-width: 320px) {
+  .Home {
+    width: 10%; /* Set the .App container width to 90% of the viewport width for small devices */
+  }
+}
+
+/* For medium devices like iPad */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .Home {
+    width: 80%; /* Set the .App container width to 80% of the viewport width for iPad */
+    margin: 0 auto; /* Center the .App container horizontally */
+  }
+}
+
+/* For large devices like PCs */
+@media (min-width: 1025px) {
+  .Home {
+    width: 50%; /* Set the .App container width to 50% of the viewport width for large devices */
+    margin: 0 auto; /* Center the .App container horizontally */
+  }
+}
