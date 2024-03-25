@@ -1,14 +1,9 @@
-// ArtistInput.js
+import React from "react";
 
-
-
-function Loading() {
- 
-
+function Loading({ data }) {
   return (
-    
     <div>
-        Loading
+      
     </div>
   );
 }
