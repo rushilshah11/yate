@@ -6,35 +6,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import bg from "../images/bg.png";
 
 function HomePage() {
-  const CLIENT_ID = "1b2eb1337b2649deb46755b406fb1f87";
-  const REDIRECT_URI = "http://localhost:3000/userAuth";
-  const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-  const RESPONSE_TYPE = "token";
-
-  const [token, setToken] = useState("");
-
-  useEffect(() => {
-    const hash = window.location.hash;
-    let token = window.localStorage.getItem("token");
-
-    if (!token && hash) {
-      token = hash
-        .substring(1)
-        .split("&")
-        .find((elem) => elem.startsWith("access_token"))
-        .split("=")[1];
-
-      window.location.hash = "";
-      window.localStorage.setItem("token", token);
-      setToken(token);
-    }
-  }, []);
-
-  const logout = () => {
-    setToken("");
-    window.localStorage.removeItem("token");
-  };
-
   return (
     <div className="Home" style={{ position: "relative", overflow: "hidden" }}>
       <img
@@ -75,29 +46,24 @@ function HomePage() {
                 <span style={{ color: "#93C90F" }}> Night</span>
               </span>
 
-              {!token ? (
-                <div style={{ marginTop: "15vh", textAlign: "center" }}>
-                  <a
-                    style={{
-                      background: "#93C90F",
-                      borderRadius: "5.38px",
-                      padding: "10px 20px",
-                      color: "black",
-                      fontFamily: "Pitch Sans",
-                      fontSize: "16px",
-                      fontWeight: "500",
-                      cursor: "pointer",
-                      border: "none",
-                      outline: "none",
-                    }}
-                    href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&show_dialog=true`}
-                  >
-                    CONNECT SPOTIFY
-                  </a>
-                </div>
-              ) : (
-                <button onClick={logout}>Log out</button>
-              )}
+              <div style={{ marginTop: "15vh", textAlign: "center" }}>
+                <a
+                  style={{
+                    background: "#93C90F",
+                    borderRadius: "5.38px",
+                    padding: "10px 20px",
+                    color: "black",
+                    fontFamily: "Pitch Sans",
+                    fontSize: "16px",
+                    fontWeight: "500",
+                    cursor: "pointer",
+                    border: "none",
+                    outline: "none",
+                  }}
+                >
+                  Find Your Mix
+                </a>
+              </div>
             </div>
           </Col>
         </Row>
