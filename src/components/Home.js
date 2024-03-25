@@ -22,7 +22,7 @@ function HomePage() {
                 </h1>
               </div>
 
-              <Link to="/userAuth" className="btn-find-your-mix">
+              <Link to="/ArtistInput" className="btn-find-your-mix">
                 Find Your Mix
               </Link>
             </div>
