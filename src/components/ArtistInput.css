@@ -12,7 +12,6 @@ body, .QuizPage {
   object-fit: cover;
 }
 
-
 .overlay {
   position: absolute;
   top: 0;
@@ -30,20 +29,9 @@ body, .QuizPage {
   text-align: center;
 }
 
-.text-uppercase {
-  text-transform: uppercase;
-}
-
 .title {
   text-align: center;
   margin-bottom: 70px; /* Adjust as needed */
-}
-
-
-.quiz-title {
-  
-  color: #FF8F1C; /* Orange color */
-  
 }
 
 .artist-label {
@@ -68,24 +56,47 @@ body, .QuizPage {
 }
 
 .navigation-buttons {
-  margin-top:10rem;
+  margin-top: 10rem; /* Adjust spacing */
 }
-
-.navigation-buttons .btn-back,
-.navigation-buttons .btn-next {
+.navigation-buttons Link {
   padding: 2px 10px;
   margin: 0 10px;
   background: #93C90F;
+  border: none;
   border-radius: 5.38px;
   color: black;
+  font-family: 'Pitch Sans';
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
   align-items: center;
+  cursor: pointer;
   transition: background-color 0.3s ease; /* Add transition for background-color */
 }
 
-.navigation-buttons .btn-back:hover,
-.navigation-buttons .btn-next:hover {
+.navigation-buttons Link:hover {
   background: #FF8F1C; /* Darken the background color on hover */
-  border-color: #FF8F1C; /* Change border color on hover */
+}
+
+
+.navigation-buttons button {
+  padding: 2px 10px;
+  margin: 0 10px;
+  background: #93C90F;
+  border: none;
+  border-radius: 5.38px;
+  color: black;
+  font-family: 'Pitch Sans';
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Add transition for background-color */
+}
+
+.navigation-buttons button:hover {
+  background: #FF8F1C; /* Darken the background color on hover */
 }
 
 .quiz-question {

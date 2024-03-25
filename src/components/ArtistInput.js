@@ -75,7 +75,32 @@ function ArtistInput() {
                 <FaArrowRightLong />
               </button>
             ) : (
-              <Link to="/Loading" className="btn-next">
+              <Link
+                to="/Loading"
+                className="btn-next"
+                style={{
+                  padding: "3px 10px",
+                  margin: "0 10px",
+                  background: "#93C90F",
+                  border: "none",
+                  borderRadius: "5.38px",
+                  color: "black",
+                  fontFamily: "Pitch Sans",
+                  fontSize: "16px",
+                  fontWeight: 500,
+                  textDecoration: "none",
+                  alignItems: "center",
+                  cursor: "pointer",
+                  transition:
+                    "background-color 0.3s ease" /* Add transition for background-color */,
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = "#FF8F1C";
+                }} /* Change background color on hover */
+                onMouseLeave={(e) => {
+                  e.target.style.background = "#93C90F";
+                }} /* Restore original background color on mouse leave */
+              >
                 <FaArrowRightLong />
               </Link>
             )}
