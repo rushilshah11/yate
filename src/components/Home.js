@@ -1,6 +1,6 @@
 // HomePage.js
 import React from "react";
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./Home.css";
 import { Container, Row, Col } from "react-bootstrap";
 import bg from "../images/bg.png";
@@ -47,7 +47,8 @@ function HomePage() {
               </span>
 
               <div style={{ marginTop: "15vh", textAlign: "center" }}>
-                <a
+                <Link
+                  to="/userAuth"
                   style={{
                     background: "#93C90F",
                     borderRadius: "5.38px",
@@ -59,10 +60,11 @@ function HomePage() {
                     cursor: "pointer",
                     border: "none",
                     outline: "none",
+                    textDecoration: "none", // Add this to remove underline
                   }}
                 >
                   Find Your Mix
-                </a>
+                </Link>
               </div>
             </div>
           </Col>
