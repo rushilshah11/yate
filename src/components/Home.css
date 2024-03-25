@@ -1,41 +1,62 @@
-body {
+/* Home.css */
+body, .Home {
   margin: 0;
   padding: 0;
-  background-color: black; /* Set the background color of the body to black */
+  width: 100%;
+  height: 100%;
 }
 
-.Home {
-  margin: 0;
-  padding: 0;
-  background-color: black; /* Set the background color of the body to black */
+.bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the entire container */
+   
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #000; /* Set the background color of the .App container to black */
-  position: relative;
-  overflow: hidden;
-  width: 100%; /* For smaller screens, occupying full width */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  background-color: rgba(0, 0, 0, 0.75); /* Add some transparency to the overlay */
 }
 
-/* For small devices like iPhone SE */
-@media (max-width: 320px) {
-  .Home {
-    width: 10%; /* Set the .App container width to 90% of the viewport width for small devices */
-  }
+.content {
+  color: white;
+  text-align: center; /* Center text horizontally */
 }
 
-/* For medium devices like iPad */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .Home {
-    width: 80%; /* Set the .App container width to 80% of the viewport width for iPad */
-    margin: 0 auto; /* Center the .App container horizontally */
-  }
+.text-uppercase {
+  text-transform: uppercase;
+}
+/* 
+.full-height {
+  height: 30vh;
+} */
+
+.title{
+  padding-bottom: 90px;
 }
 
-/* For large devices like PCs */
-@media (min-width: 1025px) {
-  .Home {
-    width: 50%; /* Set the .App container width to 50% of the viewport width for large devices */
-    margin: 0 auto; /* Center the .App container horizontally */
-  }
+.highlight-text-orange {
+  color: #FF8F1C;
+}
+
+.highlight-text-green {
+  color: #93C90F;
+}
+
+.btn-find-your-mix {
+  padding: 10px 20px;
+  background: #93C90F;
+  border-radius: 5.38px;
+  color: black;
+  font-family: 'Pitch Sans';
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
 }
