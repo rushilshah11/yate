@@ -6,12 +6,12 @@ import "./ArtistInput.css";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
-function ArtistInput() {
-  const [currentQuestion, setCurrentQuestion] = useState(1);
-
+function ArtistInput({ setArtists }) {
+  const [artists, setArtistsState] = useState(["", "", ""]);
+  const [currentQuestion, setCurrentQuestion] = useState(1); 
 
   const handleNext = () => {
-    
+    setArtists(artists); 
     setCurrentQuestion((prevQuestion) => prevQuestion + 1);
   };
 
