@@ -230,7 +230,7 @@ function Loading({ data, artists }) {
           "This cocktail exudes elegance and sophistication, making it ideal for someone who enjoys attending stylish social gatherings and upscale events.",
       });
     }
-  }, [data, artists]);
+  }, [data, artists, recommendedDrink]);
 
   return (
     <div>
