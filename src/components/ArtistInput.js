@@ -1,4 +1,3 @@
-// ArtistInput.js
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import bg from "../images/bg.png";
@@ -8,11 +7,21 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 
 function ArtistInput({ setArtists }) {
   const [artists, setArtistsState] = useState(["", "", ""]);
-  const [currentQuestion, setCurrentQuestion] = useState(1); 
+  const [currentQuestion, setCurrentQuestion] = useState(1);
+
+  const handleInputChange = (index, event) => {
+    const newArtists = [...artists];
+    newArtists[index] = event.target.value;
+    setArtistsState(newArtists);
+  };
 
   const handleNext = () => {
-    setArtists(artists); 
-    setCurrentQuestion((prevQuestion) => prevQuestion + 1);
+    if (currentQuestion === 3) {
+      setArtists(artists);
+      // Navigate to the loading page or any other destination here
+    } else {
+      setCurrentQuestion((prevQuestion) => prevQuestion + 1);
+    }
   };
 
   const handleBack = () => {
@@ -36,6 +45,8 @@ function ArtistInput({ setArtists }) {
               id="artist1"
               placeholder="ex: Drake"
               className="artist-input"
+              value={artists[0]}
+              onChange={(event) => handleInputChange(0, event)}
             />
           </div>
           <div
@@ -49,6 +60,8 @@ function ArtistInput({ setArtists }) {
               id="artist2"
               placeholder="ex: Kendrick Lamar"
               className="artist-input"
+              value={artists[1]}
+              onChange={(event) => handleInputChange(1, event)}
             />
           </div>
           <div
@@ -62,6 +75,8 @@ function ArtistInput({ setArtists }) {
               id="artist3"
               placeholder="ex: Metro Boomin"
               className="artist-input"
+              value={artists[2]}
+              onChange={(event) => handleInputChange(2, event)}
             />
           </div>
           <div className="navigation-buttons">
@@ -75,34 +90,35 @@ function ArtistInput({ setArtists }) {
                 <FaArrowRightLong />
               </button>
             ) : (
-              <Link
-                to="/Loading"
-                className="btn-next"
-                style={{
-                  padding: "3px 10px",
-                  margin: "0 10px",
-                  background: "#93C90F",
-                  border: "none",
-                  borderRadius: "5.38px",
-                  color: "black",
-                  fontFamily: "Pitch Sans",
-                  fontSize: "16px",
-                  fontWeight: 500,
-                  textDecoration: "none",
-                  alignItems: "center",
-                  cursor: "pointer",
-                  transition:
-                    "background-color 0.3s ease" /* Add transition for background-color */,
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = "#FF8F1C";
-                }} /* Change background color on hover */
-                onMouseLeave={(e) => {
-                  e.target.style.background = "#93C90F";
-                }} /* Restore original background color on mouse leave */
-              >
-                <FaArrowRightLong />
-              </Link>
+              <button onClick={handleNext} className="btn-next">
+                <Link
+                  to="/Loading"
+                  style={{
+                    padding: "3px 10px",
+                    margin: "0 10px",
+                    background: "#93C90F",
+                    border: "none",
+                    borderRadius: "5.38px",
+                    color: "black",
+                    fontFamily: "Pitch Sans",
+                    fontSize: "16px",
+                    fontWeight: 500,
+                    textDecoration: "none",
+                    alignItems: "center",
+                    cursor: "pointer",
+                    transition:
+                      "background-color 0.3s ease" /* Add transition for background-color */,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = "#FF8F1C";
+                  }} /* Change background color on hover */
+                  onMouseLeave={(e) => {
+                    e.target.style.background = "#93C90F";
+                  }} /* Restore original background color on mouse leave */
+                >
+                  <FaArrowRightLong />
+                </Link>
+              </button>
             )}
           </div>
         </div>
