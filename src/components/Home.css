@@ -60,3 +60,24 @@ body, .Home {
   font-weight: 500;
   text-decoration: none;
 }
+
+.wristband-container {
+  position: relative;
+  bottom: 20px;
+}
+
+.wristband {
+  position: absolute;
+  width: 150px; 
+  top: -30px;
+}
+
+.green {
+  left: 70%;
+  transform: translateX(-75%) rotate(-10deg);
+}
+
+.orange {
+  right: 50%; 
+  transform: translateX(50%) rotate(20deg); 
+}
