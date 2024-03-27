@@ -91,3 +91,23 @@ body {
         opacity: 0%;
     }
 }
+
+.health-icons {
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  margin-top: 0px; 
+}
+
+.health-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px; 
+  margin-bottom: 10px; 
+}
+
+.health-icon img {
+  width: 40px; 
+  height: auto;
+}
