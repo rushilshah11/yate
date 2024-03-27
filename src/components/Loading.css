@@ -1,0 +1,93 @@
+/* Your existing CSS styles */
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+.App {
+  text-align: center;
+}
+
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: black;
+  color: white;
+}
+
+.drink-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin-top: 1rem;
+  padding-top: 20px;
+  text-decoration: underline;
+}
+
+.drink-description {
+  font-size: clamp(1rem, 5vw, 2rem);
+}
+
+.persona-title {
+  font-size: clamp(1rem, 2vw, 1rem);
+  text-decoration: underline;
+}
+
+.home-drink-section img {
+  max-width: 100%;
+  height: auto;
+}
+
+.ingredient-card {
+  padding: 10px;
+}
+
+.Ingredients-title {
+  font-size: clamp(1rem, 2vw, 1rem);
+  text-decoration: underline;
+}
+
+.limeIcon {
+  color: #bfff00;
+  font-size: 25px;
+}
+
+.cranberryIcon {
+  color: #a13e57;
+  font-size: 25px;
+}
+
+.pineappleIcon {
+  color: #faff68;
+  font-size: 25px;
+}
+.goldenIcon {
+  color: #ff8f1c;
+  font-size: 25px;
+}
+
+.sublimeIcon {
+  color: #93c90f;
+  font-size: 25px;
+}
+
+.alcoholIcon {
+  color: #bfc0ee;
+  font-size: 25px;
+}
+
+.ingredientSpan {
+  font-size: clamp(1rem, 5vw, 2rem);
+  padding-right: 7.5px;
+}
+
+.fade-in-title{
+    animation: fade 1.0s ease-in;
+}
+
+@keyframes fade {
+    0%{
+        opacity: 0%;
+    }
+}

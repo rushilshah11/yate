@@ -1,4 +1,14 @@
 import React, { useEffect, useState } from "react";
+import pineappleSublime from "../gifs/pineapple-sublime.gif";
+import moscowFuel from "../gifs/moscow-fuel.gif";
+import goldenSpritz from "../gifs/golden-spritz.gif";
+import "./Loading.css";
+import { Container, Row, Col } from "react-bootstrap";
+import { GiGlassShot } from "react-icons/gi";
+import { GiFruitTree } from "react-icons/gi";
+import { GiSodaCan } from "react-icons/gi";
+import { GiCutLemon } from "react-icons/gi";
+import { GiFruitBowl } from "react-icons/gi";
 
 const genreToDrinkMap = {
   pop: "Pineapple Sublime",
@@ -167,7 +177,7 @@ const genreToDrinkMap = {
 
 function Loading({ data, artists }) {
   const [mostFrequentGenre, setMostFrequentGenre] = useState("");
-  const [genreCounts, setGenreCounts] = useState({});
+  
   const [recommendedDrink, setRecommendedDrink] = useState("");
   const [description, setDescription] = useState({});
 
@@ -198,58 +208,114 @@ function Loading({ data, artists }) {
     });
 
     setMostFrequentGenre(frequentGenre);
-    setGenreCounts(counts);
 
     setRecommendedDrink(genreToDrinkMap[frequentGenre]);
-    if (genreToDrinkMap[recommendedDrink] === "Moscow Fuel") {
+  }, [data, artists]);
+
+  useEffect(() => {
+    if (genreToDrinkMap[mostFrequentGenre] === "Moscow Fuel") {
       setDescription({
-        ingredients: "Sublime Ginger Yate, Lime, Vodka",
-        description:
-          "Moscow Fuel is a classic cocktail featuring Sublime Ginger Yate and lime, providing a crisp and tangy base. The addition of vodka lends a smooth and mellow character to the drink, resulting in a refreshing yet sophisticated beverage.",
+        ingredients: ["Sublime Ginger Yate", "Vodka", "Lime"],
+        icons: [
+          <GiSodaCan className="sublimeIcon" />,
+          <GiGlassShot className="alcoholIcon" />,
+          <GiCutLemon className="limeIcon" />,
+        ],
         persona: "Urban Explorer",
         personaDescription:
-          "Moscow Fuel is for the person who appreciates the hustle and bustle of city life and enjoys exploring urban environments.",
+          "Crafted for the Urban Explorer who craves the thrill of city life and the vibrant energy of bustling streets. Immerse yourself in the pulse of urban nightlife with every sip, as you embark on an exhilarating journey through the electrifying streets of the metropolis.",
       });
-    } else if (genreToDrinkMap[recommendedDrink] === "Pineapple Sublime") {
+    } else if (genreToDrinkMap[mostFrequentGenre] === "Pineapple Sublime") {
       setDescription({
-        ingredients: "Sublime Ginger Yate, Pineapple, Tequila, Splash of Lime",
-        description:
-          "This drink is a vibrant and refreshing blend of Sublime Ginger Yate, which offers a zesty kick, combined with the sweetness of pineapple and a splash of lime. The addition of tequila adds a spirited twist, making it perfect for those who enjoy lively and energetic flavors.",
+        ingredients: [
+          "Sublime Ginger Yate",
+          "Tequila",
+          "Pineapple",
+          "Splash of Lime",
+        ],
+        icons: [
+          <GiSodaCan className="sublimeIcon" />,
+          <GiGlassShot className="alcoholIcon" />,
+          <GiFruitBowl className="pineappleIcon" />,
+          <GiCutLemon className="limeIcon" />,
+        ],
         persona: "Summer Enthusiast",
         personaDescription:
-          "This drink is perfect for someone who enjoys vibrant and energetic flavors, perhaps someone who loves spending time at the beach or poolside during hot summer days.",
+          "Crafted for the Summer Enthusiast who craves the thrill of sunny adventures and the cool breeze of tropical escapes. Embrace the essence of summer in every sip, and let the rhythm of the waves carry you to paradise.",
       });
     } else {
       setDescription({
-        ingredients:
-          "Original Golden Yate, Vodka, Splash of Cranberry, Lime Juice",
-        description:
-          "Golden Spritz is a luxurious and flavorful cocktail featuring Original Golden Yate as its base. The addition of vodka adds depth and complexity, while the splash of cranberry and lime juice provides a burst of fruity freshness. This drink is perfect for those who enjoy a balanced combination of sweet, tart, and tangy flavors in their cocktails.",
+        ingredients: [
+          "Original Golden Yate",
+          "Vodka",
+          "Splash of Cranberry",
+          "Lime Juice",
+        ],
+        icons: [
+          <GiSodaCan className="goldenIcon" />,
+          <GiGlassShot className="alcoholIcon" />,
+          <GiFruitTree className="cranberryIcon" />,
+          <GiCutLemon className="limeIcon" />,
+        ],
         persona: "Sophisticated Socialite",
         personaDescription:
-          "This cocktail exudes elegance and sophistication, making it ideal for someone who enjoys attending stylish social gatherings and upscale events.",
+          "Crafted for the Sophisticated Socialite who commands attention and revels in the allure of glamorous soirées. Sip with finesse and grace, and let each golden drop tell a tale of refined taste and effortless charm",
       });
     }
-  }, [data, artists, recommendedDrink]);
+  }, [mostFrequentGenre, recommendedDrink]);
+
+  const gifs = {
+    "Pineapple Sublime": pineappleSublime,
+    "Moscow Fuel": moscowFuel,
+    "Golden Spritz": goldenSpritz,
+  };
+
+  let numCols;
+  if (description.ingredients && description.ingredients.length === 3) {
+    numCols = 3;
+  } else {
+    numCols = 2; // Assuming for any other case, display 2 ingredients per row
+  }
+
+  // Determine which GIF to display based on the recommended drink
 
   return (
-    <div>
-      <p>Recommended Genre: {mostFrequentGenre}</p>
-      <p>Recommended Drink: {recommendedDrink}</p>
-      <p>Description: {recommendedDrink}</p>
-      <ul>
-        <li>Ingredients: {description.ingredients}</li>
-        <li>Description: {description.description}</li>
-        <li>Persona: {description.persona}</li>
-      </ul>
-      <ul>
-        {Object.entries(genreCounts).map(([genre, count]) => (
-          <li key={genre}>
-            {genre}: {count}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Container className="App">
+      <Row className="home-container">
+        <Col className="home-drink-section slide-in-left">
+          <p className="drink-title face-in-title">{recommendedDrink}</p>
+          {recommendedDrink && (
+            <img src={gifs[recommendedDrink]} alt="Recommended Drink" />
+          )}
+        </Col>
+      </Row>
+      <Row>
+        <Col className="home-description-section slide-in-right">
+          <p className="persona-title">{description.persona}</p>
+          <p className="drink-description">{description.personaDescription}</p>
+        </Col>
+        <Col className="slide-in-bottom">
+          <p className="Ingredients-title">Ingredients</p>
+          <Row className="ingredients-list">
+            <Row className="ingredients-list">
+              {description.ingredients &&
+                description.ingredients.map((ingredient, index) => (
+                  <Col
+                    key={index}
+                    lg={12 / numCols}
+                    className="slide-in-bottom"
+                  >
+                    <div className="ingredient-card">
+                      <span className="ingredientSpan">{ingredient}</span>
+                      {description.icons && description.icons[index]}
+                    </div>
+                  </Col>
+                ))}
+            </Row>
+          </Row>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
