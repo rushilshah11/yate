@@ -2,6 +2,12 @@ import React, { useEffect, useState } from "react";
 import pineappleSublime from "../gifs/pineapple-sublime.gif";
 import moscowFuel from "../gifs/moscow-fuel.gif";
 import goldenSpritz from "../gifs/golden-spritz.gif";
+
+import gluten_free from "../images/gf.png";
+import gmo from "../images/gmo.png";
+import veg from "../images/v.png";
+import leaf from "../images/leaf.png";
+
 import "./Loading.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { GiGlassShot } from "react-icons/gi";
@@ -277,6 +283,7 @@ function Loading({ data, artists }) {
     numCols = 2; // Assuming for any other case, display 2 ingredients per row
   }
 
+  const healthIcons = [gluten_free, gmo, veg, leaf];
   // Determine which GIF to display based on the recommended drink
 
   return (
@@ -288,6 +295,13 @@ function Loading({ data, artists }) {
             <img src={gifs[recommendedDrink]} alt="Recommended Drink" />
           )}
         </Col>
+      </Row>
+      <Row className="health-icons">
+            {healthIcons.map((icon, index) => (
+              <Col key={index} className="health-icon">
+                <img src={icon} alt={`Health Icon ${index + 1}`} />
+              </Col>
+            ))}
       </Row>
       <Row>
         <Col className="home-description-section slide-in-right">
