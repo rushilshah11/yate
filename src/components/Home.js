@@ -13,6 +13,18 @@ function HomePage() {
         <Row className="justify-content-center align-items-center full-height">
           <Col xs={12} className="text-center">
             <div className="content">
+              <div className="wristband-container">
+                <img
+                  src={green_wristband}
+                  alt="Green Wristband"
+                  className="wristband green"
+                />
+                <img
+                  src={orange_wristband}
+                  alt="Orange Wristband"
+                  className="wristband orange"
+                />
+              </div>
               <div className="title">
                 <h1 className="text-uppercase">
                   All <span className="highlight-text-orange">Natural</span>
