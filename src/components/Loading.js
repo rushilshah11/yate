@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import pineappleSublime from "../gifs/pineapple-sublime.gif";
 import moscowFuel from "../gifs/moscow-fuel.gif";
 import goldenSpritz from "../gifs/golden-spritz.gif";
@@ -189,6 +189,8 @@ function Loading({ data, artists }) {
   const [description, setDescription] = useState({});
 
   const [loadingComplete, setLoadingComplete] = useState(false);
+  const [gifLooping, setGifLooping] = useState(false);
+  const gifRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -197,6 +199,14 @@ function Loading({ data, artists }) {
 
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (loadingComplete && recommendedDrink) {
+      if (gifRef.current) {
+        gifRef.current.setAttribute("loop", true);
+      }
+    }
+  }, [loadingComplete, recommendedDrink]);
 
   useEffect(() => {
     const normalizedArtists = artists.map((artist) => artist.toLowerCase());
@@ -306,7 +316,10 @@ function Loading({ data, artists }) {
       <Container className="App">
         <Row className="justify-content-center align-items-center full-height">
           <Col className="text-center">
-            <img src={loadingGif} alt="Loading..." />
+          <div className="loading-wrapper">
+              <img src={loadingGif} alt="Loading..." /> 
+              <p className="loading-text">Finding your mix</p>
+          </div>
           </Col>
         </Row>
       </Container>
@@ -318,7 +331,6 @@ function Loading({ data, artists }) {
   if(recommendedDrink === "Golden Spritz"){
     borderColor = "#ff8f1c";
   }
-
 
   return (
     <Container className="App">
@@ -350,11 +362,12 @@ function Loading({ data, artists }) {
           <p className="persona-title">{description.persona}</p>
           {recommendedDrink && (
             <img
-              src={gifs[recommendedDrink]}
-              alt="Recommended Drink"
-              className="drinkIMG"
-            />
-          )}
+            ref={gifRef}
+            src={gifs[recommendedDrink]}
+            alt="Recommended Drink"
+            className="drinkIMG"
+          />
+        )}
         </Col>
         <Col className="home-description-section slide-in-right">
           <p className="drink-description">{description.personaDescription}</p>
