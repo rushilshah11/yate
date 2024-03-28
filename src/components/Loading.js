@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import pineappleSublime from "../gifs/pineapple-sublime.gif";
 import moscowFuel from "../gifs/moscow-fuel.gif";
 import goldenSpritz from "../gifs/golden-spritz.gif";
+import loadingGif from "../gifs/loading.gif"
 
 import gluten_free from "../images/gf.png";
 import gmo from "../images/gmo.png";
@@ -181,13 +182,25 @@ const genreToDrinkMap = {
   wassoulou: "Golden Spritz",
 };
 
+
 function Loading({ data, artists }) {
   const [mostFrequentGenre, setMostFrequentGenre] = useState("");
   
   const [recommendedDrink, setRecommendedDrink] = useState("");
   const [description, setDescription] = useState({});
 
+  const [loadingComplete, setLoadingComplete] = useState(false);
+
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoadingComplete(true); // wait 3 seconds
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+
     const normalizedArtists = artists.map((artist) => artist.toLowerCase());
     const filteredData = data.filter((artist) =>
       normalizedArtists.includes(artist.name.toLowerCase())
@@ -284,7 +297,20 @@ function Loading({ data, artists }) {
   }
 
   const healthIcons = [gluten_free, gmo, veg, leaf];
+
   // Determine which GIF to display based on the recommended drink
+  
+  if (!loadingComplete) {
+    return (
+      <Container className="App">
+        <Row className="justify-content-center align-items-center full-height">
+          <Col className="text-center">
+            <img src={loadingGif} alt="Loading..." />
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 
   return (
     <Container className="App">
