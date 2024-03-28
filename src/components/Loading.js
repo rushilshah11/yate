@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import pineappleSublime from "../gifs/pineapple-sublime.gif";
 import moscowFuel from "../gifs/moscow-fuel.gif";
 import goldenSpritz from "../gifs/golden-spritz.gif";
-import loadingGif from "../gifs/loading.gif"
+import loadingGif from "../gifs/loading.gif";
 
 import gluten_free from "../images/gf.png";
 import gmo from "../images/gmo.png";
@@ -182,10 +182,9 @@ const genreToDrinkMap = {
   wassoulou: "Golden Spritz",
 };
 
-
 function Loading({ data, artists }) {
   const [mostFrequentGenre, setMostFrequentGenre] = useState("");
-  
+
   const [recommendedDrink, setRecommendedDrink] = useState("");
   const [description, setDescription] = useState({});
 
@@ -200,7 +199,6 @@ function Loading({ data, artists }) {
   }, []);
 
   useEffect(() => {
-
     const normalizedArtists = artists.map((artist) => artist.toLowerCase());
     const filteredData = data.filter((artist) =>
       normalizedArtists.includes(artist.name.toLowerCase())
@@ -226,6 +224,9 @@ function Loading({ data, artists }) {
       }
     });
 
+    if(frequentGenre === ""){
+      frequentGenre = "rock";
+    }
     setMostFrequentGenre(frequentGenre);
 
     setRecommendedDrink(genreToDrinkMap[frequentGenre]);
@@ -299,7 +300,7 @@ function Loading({ data, artists }) {
   const healthIcons = [gluten_free, gmo, veg, leaf];
 
   // Determine which GIF to display based on the recommended drink
-  
+
   if (!loadingComplete) {
     return (
       <Container className="App">
@@ -312,30 +313,71 @@ function Loading({ data, artists }) {
     );
   }
 
+  let borderColor = "#93C90F";
+
+  if(recommendedDrink === "Golden Spritz"){
+    borderColor = "#ff8f1c";
+  }
+
+
   return (
     <Container className="App">
-      <Row className="home-container">
+      <Row
+        style={{
+          marginRight: "40px",
+          marginLeft: "40px",
+          border: `3px solid ${borderColor}`,
+          marginTop: "30px",
+          padding: "10px",
+          marginBottom: "20px"
+        }}
+        className="home-container"
+      >
         <Col className="home-drink-section slide-in-left">
-          <p className="drink-title face-in-title">{recommendedDrink}</p>
+          <p
+            style={{
+              textAlign: "center",
+              fontSize: 30.29,
+              fontWeight: "900",
+              letterSpacing: 2.06,
+              wordWrap: "break-word",
+              paddingBottom: "5px",
+            }}
+            className="drink-title face-in-title"
+          >
+            {recommendedDrink}
+          </p>
+          <p className="persona-title">{description.persona}</p>
           {recommendedDrink && (
-            <img src={gifs[recommendedDrink]} alt="Recommended Drink" />
+            <img
+              src={gifs[recommendedDrink]}
+              alt="Recommended Drink"
+              className="drinkIMG"
+            />
           )}
         </Col>
-      </Row>
-      <Row className="health-icons">
-            {healthIcons.map((icon, index) => (
-              <Col key={index} className="health-icon">
-                <img src={icon} alt={`Health Icon ${index + 1}`} />
-              </Col>
-            ))}
-      </Row>
-      <Row>
         <Col className="home-description-section slide-in-right">
-          <p className="persona-title">{description.persona}</p>
           <p className="drink-description">{description.personaDescription}</p>
         </Col>
+      </Row>
+
+      <Row
+        style={{
+          marginRight: "40px",
+          marginLeft: "40px",
+          border: `3px solid ${borderColor}`,
+          marginTop: "30px",
+          padding: "10px",
+        }}
+      >
+        <Row className="health-icons">
+          {healthIcons.map((icon, index) => (
+            <Col key={index} className="health-icon">
+              <img src={icon} alt={`Health Icon ${index + 1}`} />
+            </Col>
+          ))}
+        </Row>
         <Col className="slide-in-bottom">
-          <p className="Ingredients-title">Ingredients</p>
           <Row className="ingredients-list">
             <Row className="ingredients-list">
               {description.ingredients &&
