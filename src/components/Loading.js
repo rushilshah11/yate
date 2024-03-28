@@ -317,7 +317,7 @@ function Loading({ data, artists }) {
         <Row className="justify-content-center align-items-center full-height">
           <Col className="text-center">
           <div className="loading-wrapper">
-              <img src={loadingGif} alt="Loading..." /> 
+              <img className="loadingGif" src={loadingGif} alt="Loading..." /> 
               <p className="loading-text">Finding your mix</p>
           </div>
           </Col>

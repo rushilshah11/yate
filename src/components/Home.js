@@ -5,7 +5,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import bg from "../images/bg.png";
 import green_wristband from "../images/green_wristband.png";
 import orange_wristband from "../images/orange_wristband.png";
-import social_by_nature from "../images/socialByNature.png"
 import "./Home.css";
 
 function HomePage() {
@@ -41,11 +40,6 @@ function HomePage() {
                 Find Your Mix
               </Link>
               
-              <div className="social-nature-container">
-                <img src={social_by_nature}
-                  alt="Social By Nature"
-                  className="social-nature-img" />
-              </div>
             </div>
           </Col>
         </Row>

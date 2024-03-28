@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import bg from "../images/bg.png";
 import "./ArtistInput.css";
@@ -27,6 +27,18 @@ function ArtistInput({ setArtists }) {
   const handleBack = () => {
     setCurrentQuestion((prevQuestion) => prevQuestion - 1);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      window.scrollTo(0, 0); // Scroll to the top when the keyboard is dismissed
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div className="QuizPage">
@@ -94,8 +106,7 @@ function ArtistInput({ setArtists }) {
                 <Link
                   to="/Loading"
                   style={{
-                    padding: "3px 10px",
-                    margin: "0 10px",
+                    padding: "0px 1px",
                     background: "#93C90F",
                     border: "none",
                     borderRadius: "5.38px",

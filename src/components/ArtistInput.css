@@ -32,6 +32,7 @@ body, .QuizPage {
 .title {
   text-align: center;
   margin-bottom: 70px; /* Adjust as needed */
+  
 }
 
 .artist-label {
@@ -39,6 +40,7 @@ body, .QuizPage {
   margin-bottom: 10px;
   color: #93C90F; /* Green color */
   font-size: 20px; /* Larger font size */
+  font-family: "Courier New", Courier, monospace;
 }
 
 .artist-input {
@@ -49,6 +51,7 @@ body, .QuizPage {
   border-radius: 5px;
   color: #93C90F;
   background-color: rgba(255, 255, 255, 0.1);
+  font-family: "Courier New", Courier, monospace;
 }
 
 .artist-input::placeholder {
@@ -65,7 +68,7 @@ body, .QuizPage {
   border: none;
   border-radius: 5.38px;
   color: black;
-  font-family: 'Pitch Sans';
+  font-family: "Courier New", Courier, monospace;
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;

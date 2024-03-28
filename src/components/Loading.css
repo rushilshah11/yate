@@ -122,5 +122,12 @@ body {
 .loading-text {
   color: white;
   margin-top: 20px; 
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+}
+
+.loadingGif{
+  max-width: 100px; 
+  max-height: 100px;
 }
 
