@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import pineappleSublime from "../gifs/pineapple-sublime.gif";
 import moscowFuel from "../gifs/moscow-fuel.gif";
 import goldenSpritz from "../gifs/golden-spritz.gif";
@@ -184,14 +184,20 @@ const genreToDrinkMap = {
 
 function Loading({ data, artists }) {
   const [mostFrequentGenre, setMostFrequentGenre] = useState("");
-
   const [recommendedDrink, setRecommendedDrink] = useState("");
   const [description, setDescription] = useState({});
 
   const [loadingComplete, setLoadingComplete] = useState(false);
-  const [gifLooping, setGifLooping] = useState(false);
-  const gifRef = useRef(null);
+  
 
+  const gifs = useMemo(
+    () => ({
+      "Pineapple Sublime": pineappleSublime,
+      "Moscow Fuel": moscowFuel,
+      "Golden Spritz": goldenSpritz,
+    }),
+    []
+  );
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoadingComplete(true); // wait 3 seconds
@@ -201,24 +207,15 @@ function Loading({ data, artists }) {
   }, []);
 
   useEffect(() => {
-    if (loadingComplete && recommendedDrink) {
-      if (gifRef.current) {
-        gifRef.current.setAttribute("loop", true);
-      }
-    }
-  }, [loadingComplete, recommendedDrink]);
-
-  useEffect(() => {
     const normalizedArtists = artists.map((artist) => artist.toLowerCase());
     const filteredData = data.filter((artist) =>
       normalizedArtists.includes(artist.name.toLowerCase())
     );
-    console.log("Filtered Data:", filteredData); // Log filteredData for inspection
 
     // Count the occurrences of each genre
     const counts = {};
     filteredData.forEach((artist) => {
-      const genresArray = JSON.parse(artist.genres.replace(/'/g, '"')); // Parse the genres string into an array
+      const genresArray = JSON.parse(artist.genres.replace(/'/g, '"'));
       genresArray.forEach((genre) => {
         counts[genre] = (counts[genre] || 0) + 1;
       });
@@ -234,7 +231,7 @@ function Loading({ data, artists }) {
       }
     });
 
-    if(frequentGenre === ""){
+    if (frequentGenre === "") {
       frequentGenre = "rock";
     }
     setMostFrequentGenre(frequentGenre);
@@ -294,12 +291,6 @@ function Loading({ data, artists }) {
     }
   }, [mostFrequentGenre, recommendedDrink]);
 
-  const gifs = {
-    "Pineapple Sublime": pineappleSublime,
-    "Moscow Fuel": moscowFuel,
-    "Golden Spritz": goldenSpritz,
-  };
-
   let numCols;
   if (description.ingredients && description.ingredients.length === 3) {
     numCols = 3;
@@ -316,10 +307,10 @@ function Loading({ data, artists }) {
       <Container className="App">
         <Row className="justify-content-center align-items-center full-height">
           <Col className="text-center">
-          <div className="loading-wrapper">
-              <img className="loadingGif" src={loadingGif} alt="Loading..." /> 
+            <div className="loading-wrapper">
+              <img className="loadingGif" src={loadingGif} alt="Loading..." />
               <p className="loading-text">Finding your mix</p>
-          </div>
+            </div>
           </Col>
         </Row>
       </Container>
@@ -328,7 +319,7 @@ function Loading({ data, artists }) {
 
   let borderColor = "#93C90F";
 
-  if(recommendedDrink === "Golden Spritz"){
+  if (recommendedDrink === "Golden Spritz") {
     borderColor = "#ff8f1c";
   }
 
@@ -341,7 +332,7 @@ function Loading({ data, artists }) {
           border: `3px solid ${borderColor}`,
           marginTop: "30px",
           padding: "10px",
-          marginBottom: "20px"
+          marginBottom: "20px",
         }}
         className="home-container"
       >
@@ -360,14 +351,13 @@ function Loading({ data, artists }) {
             {recommendedDrink}
           </p>
           <p className="persona-title">{description.persona}</p>
-          {recommendedDrink && (
-            <img
-            ref={gifRef}
-            src={gifs[recommendedDrink]}
-            alt="Recommended Drink"
-            className="drinkIMG"
-          />
-        )}
+          {recommendedDrink &&(
+              <img
+                src={gifs[recommendedDrink]}
+                alt="Recommended Drink"
+                className="drinkIMG"
+              />
+            )}
         </Col>
         <Col className="home-description-section slide-in-right">
           <p className="drink-description">{description.personaDescription}</p>
